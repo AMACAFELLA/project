@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Description",
+    "description": "API for managing timed tasks",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
@@ -11,133 +11,199 @@
     "http"
   ],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/tasks/{task_id}": {
-      "put": {
-        "description": "Update a task by ID",
-        "parameters": [
-          {
-            "name": "task_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "taskName": {
-                  "example": "any"
-                },
-                "taskTime": {
-                  "example": "any"
-                },
-                "completed": {
-                  "example": "false"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/tasks": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "apiKey",
-            "in": "header",
-            "type": "string"
-          }
+        "description": "Endpoint for retrieving all tasks",
+        "produces": [
+          "application/json"
         ],
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Tasks retrieved successfully",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "task_id": {
+                            "type": "string"
+                        },
+                        "taskName": {
+                            "type": "string"
+                        },
+                        "taskTime": {
+                            "type": "integer"
+                        },
+                        "completed": {
+                            "type": "boolean"
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       },
       "post": {
-        "description": "",
+        "description": "Endpoint for creating a new task. Expects a JSON object containing the task information in the request body",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "any"
+                "taskName": {
+                  "type": "string"
                 },
-                "temple_id": {
-                  "example": "any"
+                "taskTime": {
+                  "type": "integer"
                 },
-                "description": {
-                  "example": "any"
+                "completed": {
+                  "type": "boolean"
                 },
-                "location": {
-                  "example": "any"
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
                 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Task created successfully"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad request"
           },
           "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
-    }
-  }
-}
+    },
+    "/tasks/{id}": {
+        "get": {
+            "description": "Endpoint for retrieving a task by its id",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Task retrieved successfully",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "task_id": {
+                                "type": "string"
+                            },
+                            "taskName": {
+                                "type": "string"
+                            },
+                            "taskTime": {
+                                "type": "integer"
+                            },
+                            "completed": {
+                                "type": "boolean"
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                },
+                "404": {
+                    "description": "Task not found"
+                }
+            }
+          },
+          "put": {
+                "description": "Endpoint for updating a task by its ID. Expects a JSON object containing the updated task information in the request body",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "taskName": {
+                                    "type": "string"
+                                },
+                                "taskTime": {
+                                    "type": "integer"
+                                },
+                                "completed": {
+                                    "type": "boolean"
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task updated successfully"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Endpoint for deleting a task by its ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Task deleted successfully"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }

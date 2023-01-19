@@ -1,7 +1,8 @@
-const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const {ObjectId} = require('mongodb');
 
-const getAllTasks = async (req, res, next) => {
+const mongodb = require('../db/connect');
+
+const getAll = async (req, res, next) => {
 const result = await mongodb.getDb().db().collection('tasks').find();
 result.toArray().then((lists) => {
 res.setHeader('Content-Type', 'application/json');
@@ -9,7 +10,7 @@ res.status(200).json(lists);
 });
 };
 
-const getSingleTask = async (req, res, next) => {
+const getSingle = async (req, res, next) => {
 const taskId = new ObjectId(req.params.id);
 const result = await mongodb
 .getDb()
@@ -65,4 +66,4 @@ res.status(500).json({ message: 'An error occurred while deleting the task.', er
 }
 };
 
-module.exports = { getAllTasks, getSingleTask, createTask, updateTask, deleteTask };
+module.exports = { getAll, getSingle, createTask, updateTask, deleteTask };

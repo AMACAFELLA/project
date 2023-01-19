@@ -1,52 +1,59 @@
+//Localhost
+
+### Get all tasks
+
+GET http://localhost:8080/tasks
+
 ### Create contact 
-POST http://localhost:3000/contacts HTTP/1.1
+POST http://localhost:8080/tasks HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Iris",
-    "lastName":"Toody", 
-    "email":"iris@bestmail.com", 
-    "favouriteColor":"Orange", 
-    "birthday":"01/04/06"
+    "taskName": "Find billy",
+    "taskTime": 2,
+    "completed": false,
+    "createdAt": "2023-01-19T08:26:38.445Z"
 }
 
 ### PUT contact 
-PUT http://localhost:3000/contacts/63c008d5bf6ee14b0614013a HTTP/1.1
+PUT http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1533 HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Iris", 
-    "lastName":"Toody",
-    "email":"iris@bestmail.com", 
-    "favouriteColor":"Green", 
-    "birthday":"02/12/06"
+  "taskName": "Run around the gym",
+  "taskTime": 1,
+  "completed": false,
+  "createdAt": "2023-01-19T08:28:00.204Z"
 }
 ### DELETE contact 
-DELETE http://localhost:3000/contacts/63c008d5bf6ee14b0614013a HTTP/1.1
+DELETE http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1534 HTTP/1.1
+
+//Production
+
+### Get all tasks
+
+GET http://localhost:8080/tasks
 
 ### Create contact 
-POST https://lesson1-coyc.onrender.com/contacts HTTP/1.1
+POST http://localhost:8080/tasks HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Iris",
-    "lastName":"Toody", 
-    "email":"iris@bestmail.com", 
-    "favouriteColor":"Orange", 
-    "birthday":"01/04/06"
+    "taskName": "Find billy",
+    "taskTime": 2,
+    "completed": false,
+    "createdAt": "2023-01-19T08:26:38.445Z"
 }
 
 ### PUT contact 
-PUT https://lesson1-coyc.onrender.com/contacts/63c016b89bd4c97db442cb0b HTTP/1.1
+PUT http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1533 HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Iris", 
-    "lastName":"Toody",
-    "email":"iris@bestmail.com", 
-    "favouriteColor":"Green", 
-    "birthday":"02/12/06"
+  "taskName": "Run around the gym",
+  "taskTime": 1,
+  "completed": false,
+  "createdAt": "2023-01-19T08:28:00.204Z"
 }
-
 ### DELETE contact 
-DELETE https://lesson1-coyc.onrender.com/contacts/63c016b89bd4c97db442cb0b HTTP/1.1
+DELETE http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1534 HTTP/1.1
