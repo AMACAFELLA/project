@@ -9,14 +9,20 @@ const initDb = (callback) => {
     console.log('Db is already initialized!');
     return callback(null, _db);
   }
-  MongoClient.connect(process.env.MONGODB_URI)
-    .then((client) => {
-      _db = client;
-      callback(null, _db);
-    })
-    .catch((err) => {
-      callback(err);
-    });
+  try {
+    MongoClient.connect(process.env.MONGODB_URI)
+      .then((client) => {
+        _db = client;
+        callback(null, _db);
+      })
+      .catch((err) => {
+        console.error("Error connecting to DB", err);
+        callback(err);
+      });
+  } catch (error) {
+    console.error("Error connecting to DB", error);
+    callback(error);
+  }
 };
 
 const getDb = () => {
