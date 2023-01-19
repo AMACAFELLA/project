@@ -5,10 +5,10 @@
     "description": "API for managing timed tasks",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "timedtasks.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/tasks": {

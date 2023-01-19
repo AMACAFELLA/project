@@ -32,10 +32,10 @@ DELETE http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1534 HTTP/1.1
 
 ### Get all tasks
 
-GET http://localhost:8080/tasks
+GET https://timedtasks.onrender.com/tasks
 
 ### Create contact 
-POST http://localhost:8080/tasks HTTP/1.1
+POST https://timedtasks.onrender.com/tasks HTTP/1.1
 content-type: application/json
 
 {
@@ -46,7 +46,7 @@ content-type: application/json
 }
 
 ### PUT contact 
-PUT http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1533 HTTP/1.1
+PUT https://timedtasks.onrender.com/tasks/63c8cc3d6aae4dfc48ad1533 HTTP/1.1
 content-type: application/json
 
 {
@@ -56,4 +56,4 @@ content-type: application/json
   "createdAt": "2023-01-19T08:28:00.204Z"
 }
 ### DELETE contact 
-DELETE http://localhost:8080/tasks/63c8cc3d6aae4dfc48ad1534 HTTP/1.1
+DELETE https://timedtasks.onrender.com/tasks/63c8cc3d6aae4dfc48ad1534 HTTP/1.1
