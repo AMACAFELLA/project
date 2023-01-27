@@ -2,16 +2,18 @@ const express = require('express');
 
 const router = express.Router();
 
+const { requiresAuth } = require('express-openid-connect');
+
 const tasksController = require('../controllers/tasks');
 
-router.get('/', tasksController.getAll);
+router.get('/', requiresAuth(), tasksController.getAll);
 
-router.get('/:id', tasksController.getSingle);
+router.get('/:id', requiresAuth(), tasksController.getSingle);
 
-router.post('/', tasksController.createTask);
+router.post('/', requiresAuth(), tasksController.createTask);
 
-router.put('/:id', tasksController.updateTask);
+router.put('/:id', requiresAuth(), tasksController.updateTask);
 
-router.delete('/:id', tasksController.deleteTask);
+router.delete('/:id', requiresAuth(), tasksController.deleteTask);
 
 module.exports = router;
